@@ -1,7 +1,10 @@
+"use client"
 import { products } from "@/data/constant"
-import Image from "next/image"
+import { useContext } from "react";
+import { Context } from "@/context";
 
 export default function DetailsPage({params}) {
+  const {handleAddToCart, cartItems} = useContext(Context)
   const id  = params.id
   return (
     <>
@@ -24,7 +27,8 @@ export default function DetailsPage({params}) {
                 <h1 className="font-bold md:text-lg text-base">Description</h1>
                 <p>Color: <span className="font-bold">Black</span></p>
                 </div>
-                <button className="font-semibold text-lg rounded-lg p-2 bg-primary w-fit mt-5">Add to Cart</button>
+                  <button disabled={cartItems.map((item)=>item.id).indexOf(product.id) !== -1} onClick={()=> handleAddToCart(product)} className="p-2 bg-primary w-fit rounded-lg text-center hover:bg-secondary disabled:opacity-25 disabled:hover:bg-primary">
+                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg></button>
               </div>
         </div>
       </div>
