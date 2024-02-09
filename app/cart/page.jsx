@@ -24,7 +24,7 @@ export default function Cart() {
         {
           cartItems && cartItems.length > 0 ? 
           cartItems.map((item) => (
-              <tr className="bg-slate-600 text-white">
+              <tr className="bg-slate-600 text-white" key={item.id}>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
